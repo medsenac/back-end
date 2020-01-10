@@ -1,4 +1,4 @@
-import { environment } from './../environments/environment.prod';
+import { environment } from './../environments/environment';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -16,9 +16,13 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, AngularFireModule
-  , AngularFireModule.initializeApp(environment.firebaseConfig), 
-AngularFirestoreModule
+  imports: [
+     BrowserModule, 
+     IonicModule.forRoot(),
+     AppRoutingModule,
+     AngularFireModule,
+     AngularFireModule.initializeApp(environment.firebase), 
+     AngularFirestoreModule
 ],
   providers: [
     StatusBar,

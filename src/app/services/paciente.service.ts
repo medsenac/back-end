@@ -9,12 +9,11 @@ import { map } from 'rxjs/operators';
 export class PacienteService {
 
   private pacienteCollection: AngularFirestoreCollection<Paciente>;
-
   constructor(private afs: AngularFirestore) {
-    this.pacienteCollection = this.afs.collection<Paciente>("Paciente");
+    this.pacienteCollection = this.afs.collection<Paciente>("Pacientes");
    }
 
-   getPaciente(){ 
+   getPacientes(){ 
      //aqui serve para listar todos os pacientes cadastrados
      return this.pacienteCollection.snapshotChanges().pipe(
        map(actions =>{ 
@@ -25,5 +24,25 @@ export class PacienteService {
         })
        })
      )
+   }
+
+
+   //adicionar Paciente
+   addPaciente(paciente: Paciente){
+     if(paciente.picture == null){
+       
+     }
+    return this.pacienteCollection.add(paciente);
+  }
+   getPaciente(id: string){
+     return this.pacienteCollection.doc<Paciente>(id).valueChanges();
+   }
+
+   updatePaciente(id: string, paciente: Paciente){
+     return this.pacienteCollection.doc<Paciente>(id).update(paciente);
+   }
+
+   deletePaciente(id: string){
+     return this.pacienteCollection.doc(id).delete();
    }
 }
